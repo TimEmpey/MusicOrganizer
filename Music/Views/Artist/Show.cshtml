@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My To-Do List!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body>
+    @using Music.Models;
+
+    <h3>Here are all the albums in this artist:</h3>
+
+    <ol>
+    @foreach (Album album in @Model["albums"])
+    {
+      <li><a href='/artists/@Model["artist"].Id/albums/@album.Id'>@album.Description</a></li>
+    }
+    </ol>
+
+    <p><a href='/artists/@Model["artist"].Id/albums/new'>Add a new album</a></p>
+    <p><a href='/artists'>Return to artist list</a></p>
+    <p><a href='/'>Return to Main Page</a></p>
+  </body>
+</html>
