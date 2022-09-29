@@ -8,9 +8,11 @@ namespace Music.Controllers
   {
 
     [HttpGet("/artists/{artistId}/albums/{albumId}/songs/new")]//extended the route to add songs after the rest of the info
-    public ActionResult New(int albumId)
+    public ActionResult New(int albumId, int artistId)
     {
       Album album = Album.Find(albumId);
+      Artist artist = Artist.Find(artistId);
+      ViewBag.artistId = artistId;
       return View(album);
     }
 

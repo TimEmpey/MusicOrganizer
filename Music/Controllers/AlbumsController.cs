@@ -33,9 +33,9 @@ namespace Music.Controllers
       Dictionary<string, object> model = new Dictionary<string, object>();
       Artist foundArtist = Artist.Find(artistId);
       Album foundAlbum = Album.Find(albumId);
+      List<Song> albumSongs = foundAlbum.Songs;
       Song newSong = new Song(songName);
       foundAlbum.AddSong(newSong);
-      List<Song> albumSongs = foundAlbum.Songs;
       model.Add("songs", albumSongs);
       model.Add("album", foundAlbum);
       model.Add("artist", foundArtist);

@@ -48,6 +48,7 @@ namespace Music.Controllers
       Album newAlbum = new Album(albumDescription);
       foundArtist.AddAlbum(newAlbum);
       List<Album> artistAlbums = foundArtist.Albums;
+      List<Song> albumSongs = new List<Song> { };
       model.Add("albums", artistAlbums);
       model.Add("artist", foundArtist);
       return View("Show", model);
