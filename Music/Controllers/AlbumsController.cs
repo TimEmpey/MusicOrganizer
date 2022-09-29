@@ -17,19 +17,29 @@ namespace Music.Controllers
     [HttpGet("/artists/{artistId}/albums/{albumId}")]
     public ActionResult Show(int artistId, int albumId)
     {
-      Album album = Album.Find(albumId);
-      Artist artist = Artist.Find(artistId);
+      Album foundAlbum = Album.Find(albumId);
+      Artist foundArtist = Artist.Find(artistId);
       Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("album", album);
-      model.Add("artist", artist);
+      List<Song> albumSongs = foundAlbum.Songs;
+      model.Add("songs", albumSongs);
+      model.Add("album", foundAlbum);
+      model.Add("artist", foundArtist);
       return View(model);
     }
 
-    [HttpPost("/albums/delete")]
-    public ActionResult DeleteAll()
+    [HttpPost("/artists/{artistId}/albums/{albumId}/songs")] // we'll need this for albums in almbumsController.cs for songs
+    public ActionResult Create(int artistId, int albumId, string songName)
     {
-      Album.ClearAll();
-      return View();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Artist foundArtist = Artist.Find(artistId);
+      Album foundAlbum = Album.Find(albumId);
+      Song newSong = new Song(songName);
+      foundAlbum.AddSong(newSong);
+      List<Song> albumSongs = foundAlbum.Songs;
+      model.Add("songs", albumSongs);
+      model.Add("album", foundAlbum);
+      model.Add("artist", foundArtist);
+      return View("Show", model);
     }
 
   }

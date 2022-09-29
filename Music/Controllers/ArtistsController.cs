@@ -40,7 +40,7 @@ namespace Music.Controllers
     }
 
     // This one creates new Albums within a given Artist, not new artists:
-    [HttpPost("/artists/{artistId}/albums")]
+    [HttpPost("/artists/{artistId}/albums")] // we'll need this for albums in almbumsController.cs for songs
     public ActionResult Create(int artistId, string albumDescription)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
